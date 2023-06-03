@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Twitter Feed Analysis</h1>
+    <p class="lead">Understanding the Twitter Feed on Apple to determine various demographic sentiments on Apple</p>
+</div>
+<h3 class="text-center mb-4">Twitter Feed Sentiment on Apple vs AAPL Stock Growth </h3>
+<div style="display: flex; justify-content: center;margin-bottom:20px">
+
+    <div style="flex: 1;">
+        <img src="{{ url_for('static', filename='AAPL_YahooFinanceChart_Apr11.png') }}" alt="AAPL Stock Chart on 11 April 2023" style="width: 300px; height: 200px;">
+    </div>
+    <div style="flex: 1;">
+        <img src="{{ url_for('static', filename='Sentiment.jpg') }}" alt="Twitter Sentiment" style="width: 300px; height: 200px;">
+    </div>
+    <div style="flex: 1;">
+        <img src="{{ url_for('static', filename='AAPL_YahooFinanceChart_Apr11_Apr13.png') }}" alt="AAPL Stock Chart on 11 April - 13 April 2023" style="width: 300px; height: 200px;">
+    </div>
+</div>
+<img src="{{ url_for('static', filename='HourSentiment.png') }}" alt="AAPL Stock Chart on 11 April - 13 April 2023" style="width: 100%;height:400px">
+<img src="{{ url_for('static', filename='AAPL_YahooFinanceChart_Hours.png') }}" alt="AAPL Stock Chart on 11 April - 13 April 2023" style="width: 100%;">
+
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Trending Topics</h2>
+        <p>
+            Most common and relevant keywords/hashtags used in the Twitter feed pertaining to the company which can provide insights into the topics and themes that are most prevalent in the tweets
+        </p>
+        <p><a class="btn btn-default" href="{{url_for('topics')}}">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Twitter Influencers</h2>
+        <p>Key individuals that drive the conversation and influence the opinions of twitter community on the company.</p>
+        <p><a class="btn btn-default" href="{{url_for('influencers')}}">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Trending Tweets</h2>
+        <p>
+            Most Liked and Retweeted Tweets
+        </p>
+        <p><a class="btn btn-default" href="{{url_for('tweets')}}">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}

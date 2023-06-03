@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#tab1">Top Apple Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab2">Hash Tag Analysis</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab3">Keyword Analysis</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="tab1" class="tab-pane active">
+            <h2>Top Apple Products</h2>
+            <p>The most talked about "Apple" products in the twitter</p>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Apple Product</th>
+                        <th>No of Occurences</th>
+                        <th>Link for Product</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in topProds %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ item.Product }}</td>
+                        <td>{{ item.Frequency }}</td>
+                        <td><a href="https://www.apple.com/shop/product/{{item.Product.lower().replace(" ","")}}">{{item.Link}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <img src="{{ url_for('static', filename='top_products.png') }}" alt="Image description" style="display: inline-block; width: 100%;">
+
+        </div>
+        <div id="tab2" class="tab-pane">
+            <h3 style="text-align:center">HashTag Analysis</h3>
+            <p>Hashtags Summary in Apple Twitter Feed</p>
+            <img src="{{ url_for('static', filename='Hashtag_wordcloud.png') }}" alt="Image description" style="display: inline-block; width: 48%;">
+            <img src="{{ url_for('static', filename='BarChart_Top10Hashtags.png') }}" alt="Image description" style="display: inline-block; width: 48%;">
+        </div>
+        <div id="tab3" class="tab-pane">
+            <h3 style="text-align:center">KeyWord Analysis</h3>
+            <p>Keywords Summary in Apple Twitter Feed</p>
+            <img src="{{ url_for('static', filename='keywords_wordcloud.png') }}" alt="Image description" style="display: inline-block; width: 48%;">
+            <img src="{{ url_for('static', filename='keyword_barchart.png') }}" alt="Image description" style="display: inline-block; width: 48%;">
+        </div>
+    </div>
+</div>
+{% endblock %}

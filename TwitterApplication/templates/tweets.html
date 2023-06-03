@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#tab1">Most Retweeted</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab2">Most Liked</a>
+        </li>
+     </ul>
+
+    <div class="tab-content">
+        <div id="tab1" class="tab-pane active">
+            <h2>Top 10 Most Retweeted Tweets</h2>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Tweet</th>
+                        <th>Retweets Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tweet in tweets %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ tweet.tweet }}</td>
+                        <td>{{ tweet.retweets_count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <img src="{{ url_for('static', filename='trending_tweets.jpg') }}" alt="Image description" style="width: 100%; height: auto;">
+        </div>
+
+        <div id="tab2" class="tab-pane">
+            <h2>Top 10 Most Liked Tweets</h2>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Tweet</th>
+                        <th>Likes Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tweet in likedtweets %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ tweet.tweet }}</td>
+                        <td>{{ tweet.likes_count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <img src="{{ url_for('static', filename='most_liked_tweets.png') }}" alt="Image description" style="width: 100%; height: auto;">
+        </div>
+    </div>
+</div>
+{% endblock %}
